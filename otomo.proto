@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+message FromHeadUnit {
+    oneof msg {
+        Joystick joystick = 1;
+        // config -> debug level, enable/disable PID, avoidance settings
+        // Move -> g-code like movement instructon
+    }
+}
+
+message FromRobot {
+    oneof msg {
+        Debug debug = 1;
+    }
+}
+
+message Joystick {
+    float heading = 1;
+    float speed = 2;
+}
+
+message Debug {
+    reserved 1; // datetime
+    LogLevel level = 2;
+    string handle = 3;
+    string message = 4;
+}
