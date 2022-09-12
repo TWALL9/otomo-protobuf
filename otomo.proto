@@ -1,22 +1,32 @@
 syntax = "proto3";
 
-message FromHeadUnit {
+import "google/protobuf/timestamp.proto";
+
+message TopMsg {
     oneof msg {
-        Joystick joystick = 1;
-        // config -> debug level, enable/disable PID, avoidance settings
-        // Move -> g-code like movement instructon
+        Config config = 1;
+        Joystick joystick = 2;
+        // Move -> g-code like movement instruction
+        Debug debug = 99;
     }
 }
 
-message FromRobot {
-    oneof msg {
-        Debug debug = 1;
-    }
+message Config {
+    LogLevel new_level = 1;
+    google.protobuf.Timestamp set_time = 2;
 }
 
 message Joystick {
     float heading = 1;
     float speed = 2;
+}
+
+enum LogLevel {
+    TRACE = 0;
+    DEBUG = 1;
+    INFO = 2;
+    WARN = 3;
+    ERROR = 4;
 }
 
 message Debug {
