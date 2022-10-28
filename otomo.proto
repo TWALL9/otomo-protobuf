@@ -3,6 +3,8 @@ syntax = "proto3";
 import "google/protobuf/timestamp.proto";
 package otomo;
 
+option java_outer_classname = "OtomoProto";
+
 message TopMsg {
     oneof msg {
         Config config = 1;
