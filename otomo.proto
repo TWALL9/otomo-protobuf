@@ -9,6 +9,7 @@ message TopMsg {
     oneof msg {
         Config config = 1;
         Joystick joystick = 2;
+        FanControl fan = 3;
         // Move -> g-code like movement instruction
         Log log = 99;
     }
@@ -22,6 +23,10 @@ message Config {
 message Joystick {
     float heading = 1;
     float speed = 2;
+}
+
+message FanControl {
+    bool on = 1;
 }
 
 enum LogLevel {
