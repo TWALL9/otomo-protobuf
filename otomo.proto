@@ -10,6 +10,7 @@ message TopMsg {
         Config config = 1;
         Joystick joystick = 2;
         FanControl fan = 3;
+        RobotState state = 4;
         // Move -> g-code like movement instruction
         Log log = 99;
     }
@@ -27,6 +28,26 @@ message Joystick {
 
 message FanControl {
     bool on = 1;
+}
+
+enum MotorEffort {
+    RELEASE = 0;
+    BRAKE = 1;
+    FORWARD = 2;
+    BACKWARD = 3;
+}
+
+message MotorState {
+    float angular_velocity = 1;
+    MotorEffort effort = 2;
+    float effort_percentage = 3;
+}
+
+message RobotState {
+    MotorState left_motor = 1;
+    MotorState right_motor = 2;
+    bool fan_on = 3;
+    // put IMU stuff here for pose
 }
 
 enum LogLevel {
