@@ -8,9 +8,10 @@ option java_outer_classname = "OtomoProto";
 message TopMsg {
     oneof msg {
         Config config = 1;
-        Joystick joystick = 2;
+        DiffDrive diff_drive = 2;
         FanControl fan = 3;
         RobotState state = 4;
+        DriveResponse drive_response = 5;
         // Move -> g-code like movement instruction
         Log log = 99;
     }
@@ -21,26 +22,22 @@ message Config {
     google.protobuf.Timestamp set_time = 2;
 }
 
-message Joystick {
-    float heading = 1;
-    float speed = 2;
+message DiffDrive {
+    float left_motor = 1;
+    float right_motor = 2;
+}
+
+message DriveResponse {
+    bool ok = 1;
 }
 
 message FanControl {
     bool on = 1;
 }
 
-enum MotorEffort {
-    RELEASE = 0;
-    BRAKE = 1;
-    FORWARD = 2;
-    BACKWARD = 3;
-}
-
 message MotorState {
-    float angular_velocity = 1;
-    MotorEffort effort = 2;
-    float effort_percentage = 3;
+    float angular_velocity = 1;   
+    float encoder = 2;
 }
 
 message RobotState {
