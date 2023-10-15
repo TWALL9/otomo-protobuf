@@ -8,7 +8,8 @@ option java_outer_classname = "OtomoProto";
 message TopMsg {
     oneof msg {
         Config config = 1;
-        DiffDrive diff_drive = 2;
+        Joystick joystick = 2;
+        DiffDrive diff_drive = 10;
         FanControl fan = 3;
         RobotState state = 4;
         DriveResponse drive_response = 5;
@@ -20,6 +21,11 @@ message TopMsg {
 message Config {
     LogLevel new_level = 1;
     google.protobuf.Timestamp set_time = 2;
+}
+
+message Joystick {
+    float heading = 1;
+    float speed = 2;
 }
 
 message DiffDrive {
