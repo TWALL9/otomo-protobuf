@@ -50,6 +50,7 @@ message RobotState {
     MotorState left_motor = 1;
     MotorState right_motor = 2;
     bool fan_on = 3;
+    bool e_stop = 4;
     // put IMU stuff here for pose
 }
 
