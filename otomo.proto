@@ -13,7 +13,7 @@ message TopMsg {
         FanControl fan = 3;
         RobotState state = 4;
         DriveResponse drive_response = 5;
-        // Move -> g-code like movement instruction
+        Pid pid = 6;
         Log log = 99;
     }
 }
@@ -52,6 +52,12 @@ message RobotState {
     bool fan_on = 3;
     bool e_stop = 4;
     // put IMU stuff here for pose
+}
+
+message Pid {
+    float p = 1;
+    float i = 2;
+    float d = 3;
 }
 
 enum LogLevel {
