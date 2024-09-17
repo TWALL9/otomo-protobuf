@@ -79,6 +79,9 @@ message Imu {
     Vector3 accel = 2;
 }
 
+// Don't use a repeated here to save on memory on the embedded device
 message Battery {
-    repeated float cell_v = 1;
+    float cell0 = 1;
+    float cell1 = 2;
+    float cell2 = 3;
 }
