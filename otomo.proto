@@ -9,12 +9,13 @@ message TopMsg {
     oneof msg {
         Config config = 1;
         Joystick joystick = 2;
-        DiffDrive diff_drive = 10;
         FanControl fan = 3;
         RobotState state = 4;
         DriveResponse drive_response = 5;
         Pid pid = 6;
-        Log log = 99;
+        Imu imu = 7;
+        Battery battery = 8;
+        DiffDrive diff_drive = 10;
     }
 }
 
@@ -51,7 +52,6 @@ message RobotState {
     MotorState right_motor = 2;
     bool fan_on = 3;
     bool e_stop = 4;
-    // put IMU stuff here for pose
 }
 
 message Pid {
@@ -68,9 +68,17 @@ enum LogLevel {
     ERROR = 4;
 }
 
-message Log {
-    reserved 1; // datetime
-    LogLevel level = 2;
-    string handle = 3;
-    string message = 4;
+message Vector3 {
+    float x = 1;
+    float y = 2;
+    float z = 3;
+}
+
+message Imu {
+    Vector3 gyro = 1;
+    Vector3 accel = 2;
+}
+
+message Battery {
+    repeated float cell_v = 1;
 }
