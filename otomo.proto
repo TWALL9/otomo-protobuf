@@ -45,6 +45,8 @@ message FanControl {
 message MotorState {
     float angular_velocity = 1;   
     float encoder = 2;
+    uint32 counts = 3;
+    float current = 4;
 }
 
 message RobotState {
